@@ -7,7 +7,7 @@ async function uploadOne(src, index) {
   try {
     const res = await axios.get(src, {
       responseType: 'arraybuffer',
-      timeout: 10000,
+      timeout: 30000,
       headers: { Referer: 'https://mp.weixin.qq.com' }
     })
     const ext = src.includes('.png') ? 'png' : 'jpg'

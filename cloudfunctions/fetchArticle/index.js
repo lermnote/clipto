@@ -137,7 +137,7 @@ exports.main = async (event) => {
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15',
         Referer: 'https://mp.weixin.qq.com'
       },
-      timeout: 10000
+      timeout: 30000
     })
 
     const dom = new JSDOM(res.data, {
