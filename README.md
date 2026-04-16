@@ -7,7 +7,8 @@
 - **文章抓取**：输入公众号文章链接，自动提取标题、正文、图片
 - **封面图**：自动提取并设置为 Notion 页面封面
 - **Notion 同步**：支持同步到指定 Notion Database
-- **历史记录**：查看已保存的文章列表
+- **历史记录**：查看已保存的文章列表，支持复制链接、删除
+- **重置配置**：可在设置页清除所有配置
 - **图片转存**：自动将公众号图片转存到云存储，避免图片失效
 
 ## 技术架构
@@ -50,7 +51,7 @@ clipto/
 ### 2. 小程序配置
 
 在设置页填入：
-- **Notion Token**：以 `secret_`或者 `ntn_`开头的 Integration Token
+- **Notion Token**：`secret_` 或 `ntn_` 开头的 Integration Token
 - **Database ID**：Notion Database URL 中的 32 位字符
 
 ### 3. 云开发配置
