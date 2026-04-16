@@ -37,10 +37,13 @@ Page({
   openArticle(e) {
     const { url } = e.currentTarget.dataset
     if (!url) return
-    // 直接在浏览器打开原文
-    wx.setClipboardData({
-      data: url,
-      success: () => wx.showToast({ title: '链接已复制', icon: 'none', duration: 1500 })
+    wx.showModal({
+      title: '打开原文',
+      content: '小程序内无法直接跳转，是否复制链接到剪贴板？',
+      confirmText: '复制',
+      success: (r) => {
+        if (r.confirm) wx.setClipboardData({ data: url })
+      }
     })
   },
 

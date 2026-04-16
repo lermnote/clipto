@@ -28,7 +28,7 @@ function cleanWechatFooter(document) {
   selectors.forEach(sel => {
     try {
       document.querySelectorAll(sel).forEach(el => el.remove())
-    } catch (e) {}
+    } catch (e) { }
   })
   return document
 }

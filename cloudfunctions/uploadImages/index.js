@@ -65,14 +65,13 @@ exports.main = async (event) => {
     .map(b => b.id)
 
   // 5. 逐个更新图片 block（Notion API 不支持批量更新单个 block）
+  // 按位置对应：页面里第 N 张图片对应 imageBlocks 里第 N 张
   let updated = 0
-  for (const blockId of imageBlockIds) {
-    // 找到这个 block 在原始 blocks 中的位置，对应新的 cloud URL
-    const idx = imageBlockIds.indexOf(blockId)
+  imageBlockIds.forEach((blockId, idx) => {
     const src = imageBlocks[idx]?._originalSrc
-    if (!src || !srcToCloud[src]) continue
+    if (!src || !srcToCloud[src]) return
 
-    await axios.patch(
+    axios.patch(
       `https://api.notion.com/v1/blocks/${blockId}`,
       {
         image: {
@@ -87,9 +86,8 @@ exports.main = async (event) => {
           'Content-Type': 'application/json'
         }
       }
-    )
-    updated++
-  }
+    ).then(() => updated++)
+  })
 
   return { success: true, updated, failed: imageBlockIds.length - updated }
 }

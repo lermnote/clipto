@@ -63,7 +63,7 @@
   <!-- 标签 -->
   <view class="section">
     <view class="section-header">
-      <image class="section-icon" src="/images/icons/copy.png" mode="aspectFit" />
+      <image class="section-icon" src="/images/icons/tags.svg" mode="aspectFit" />
       <text class="section-title">标签（可选）</text>
     </view>
     <view class="card">

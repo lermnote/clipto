@@ -52,24 +52,19 @@ Page({
   },
 
   async fetchContent() {
+    const { url } = this.data
+
+    // 先检查 URL 是否为空
+    if (!url) {
+      wx.showToast({ title: '请先输入链接', icon: 'none' })
+      return
+    }
+
     // 防重入
     if (this._fetching) return
     this._fetching = true
+    this.setData({ loading: true, fetched: false })
 
-    const {
-      url
-    } = this.data
-    if (!url) {
-      wx.showToast({
-        title: '请先输入链接',
-        icon: 'none'
-      })
-      return
-    }
-    this.setData({
-      loading: true,
-      fetched: false
-    })
     try {
       const res = await wx.cloud.callFunction({
         name: 'fetchArticle',
@@ -97,7 +92,7 @@ Page({
       // 云函数返回的结构化错误
       if (result.error) {
         const tips = {
-          timeout: '网页加载超时（>25s），可尝试：1)稍后重试 2)换用短链接 3)手动填写',
+          timeout: '网页加载超时（>30s），可尝试：1)稍后重试 2)换用短链接 3)手动填写',
           network: result.message || '网络请求失败，请检查链接是否可访问'
         }
         wx.showToast({
@@ -238,9 +233,9 @@ Page({
             url
           },
           Tags: {
-            multi_select: tag ? [{
-              name: tag
-            }] : []
+            multi_select: tag
+              ? tag.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean).map(name => ({ name }))
+              : []
           },
           摘要: {
             rich_text: [{

@@ -16,7 +16,7 @@
     </view>
     <view class="card">
       <view class="field-row">
-        <image class="field-icon" src="/images/icons/question.svg" mode="aspectFit" />
+        <image class="field-icon" src="/images/icons/token.svg" mode="aspectFit" />
         <input
           class="field-input"
           placeholder="secret_xxx 或 ntn_xxx..."
@@ -39,7 +39,7 @@
     </view>
     <view class="card">
       <view class="field-row">
-        <image class="field-icon" src="/images/icons/copy.png" mode="aspectFit" />
+        <image class="field-icon" src="/images/icons/token.svg" mode="aspectFit" />
         <input
           class="field-input"
           placeholder="从 Database URL 复制（32位）"
@@ -56,8 +56,12 @@
 
   <!-- 保存按钮 -->
   <button class="save-btn" bindtap="saveToken">
-    <image class="btn-icon" src="/images/icons/close.png" mode="aspectFit" wx:if="{{false}}" />
     <text>保存设置</text>
+  </button>
+
+  <!-- 重置按钮 -->
+  <button class="reset-btn" bindtap="resetConfig">
+    <text>重置配置</text>
   </button>
 
   <!-- 成功提示 -->

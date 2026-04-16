@@ -16,7 +16,7 @@ Page({
           saved: true
         })
       })
-      .catch(() => {})
+      .catch(() => { })
   },
 
   onDbInput(e) {
@@ -24,8 +24,6 @@ Page({
       databaseId: e.detail.value
     })
   },
-
-
 
   onTokenInput(e) {
     this.setData({
@@ -63,6 +61,24 @@ Page({
     })
     this.setData({
       saved: true
+    })
+  },
+
+  resetConfig() {
+    wx.showModal({
+      title: '确认重置',
+      content: '确定要清除所有配置吗？',
+      confirmColor: '#ff4d4f',
+      success: async (res) => {
+        if (!res.confirm) return
+        await db.collection('config').doc('notion').remove()
+        this.setData({
+          token: '',
+          databaseId: '',
+          saved: false
+        })
+        wx.showToast({ title: '已重置', icon: 'none' })
+      }
     })
   },
 })
