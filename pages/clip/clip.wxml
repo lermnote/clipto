@@ -1,0 +1,91 @@
+<view class="page">
+
+  <!-- URL 输入区 -->
+  <view class="section">
+    <view class="section-header">
+      <image class="section-icon" src="/images/icons/share.svg" mode="aspectFit" />
+      <text class="section-title">网页链接</text>
+    </view>
+    <view class="card url-card">
+      <input
+        class="url-input"
+        value="{{url}}"
+        bindinput="onUrlInput"
+        placeholder="粘贴文章 URL..."
+        placeholder-class="placeholder"
+        confirm-type="done"
+      />
+      <button
+        class="fetch-btn {{loading ? 'loading' : ''}}"
+        bindtap="fetchContent"
+        loading="{{loading}}"
+        disabled="{{loading}}"
+      >
+        <text wx:if="{{!loading}}">抓取正文</text>
+        <text wx:else>抓取中...</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 抓取结果 -->
+  <view wx:if="{{fetched}}" class="fetched-area">
+
+    <!-- 标题 -->
+    <view class="section">
+      <view class="section-header">
+        <image class="section-icon" src="/images/icons/customer-service.svg" mode="aspectFit" />
+        <text class="section-title">标题</text>
+      </view>
+      <view class="card">
+        <input
+          class="field-input"
+          value="{{title}}"
+          bindinput="onTitleInput"
+          placeholder="文章标题"
+          placeholder-class="placeholder"
+        />
+      </view>
+    </view>
+
+    <!-- 摘要 -->
+    <view class="section" wx:if="{{excerpt}}">
+      <view class="section-header">
+        <image class="section-icon" src="/images/icons/question.svg" mode="aspectFit" />
+        <text class="section-title">摘要</text>
+      </view>
+      <view class="card excerpt-card">
+        <text class="excerpt-text">{{excerpt}}</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 标签 -->
+  <view class="section">
+    <view class="section-header">
+      <image class="section-icon" src="/images/icons/copy.png" mode="aspectFit" />
+      <text class="section-title">标签（可选）</text>
+    </view>
+    <view class="card">
+      <input
+        class="field-input"
+        value="{{tag}}"
+        bindinput="onTagInput"
+        placeholder="读后感 / 技术 / 设计"
+        placeholder-class="placeholder"
+      />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <button
+    class="save-btn {{(!url || !title || loading) ? 'disabled' : ''}}"
+    bindtap="saveToNotion"
+    loading="{{loading}}"
+    disabled="{{!url || !title || loading}}"
+  >
+    <image wx:if="{{!loading}}" class="btn-icon" src="/images/icons/share.svg" mode="aspectFit" />
+    <text>保存到 Notion</text>
+  </button>
+
+</view>

@@ -1,0 +1,67 @@
+<view class="page">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-icon">
+      <image class="logo" src="/images/icons/setting.svg" mode="aspectFit" />
+    </view>
+    <text class="header-title">Clipto 设置</text>
+    <text class="header-sub">连接你的 Notion 工作区</text>
+  </view>
+
+  <!-- 配置卡片 -->
+  <view class="section">
+    <view class="section-header">
+      <image class="section-icon" src="/images/icons/customer-service.svg" mode="aspectFit" />
+      <text class="section-title">Integration Token</text>
+    </view>
+    <view class="card">
+      <view class="field-row">
+        <image class="field-icon" src="/images/icons/question.svg" mode="aspectFit" />
+        <input
+          class="field-input"
+          placeholder="secret_xxx 或 ntn_xxx..."
+          value="{{token}}"
+          bindinput="onTokenInput"
+          password="{{true}}"
+          placeholder-class="placeholder"
+        />
+      </view>
+      <view class="field-hint">
+        <text>notion.so/my-integrations → 新建集成 → 复制密钥</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <image class="section-icon" src="/images/icons/share.svg" mode="aspectFit" />
+      <text class="section-title">Database ID</text>
+    </view>
+    <view class="card">
+      <view class="field-row">
+        <image class="field-icon" src="/images/icons/copy.png" mode="aspectFit" />
+        <input
+          class="field-input"
+          placeholder="从 Database URL 复制（32位）"
+          value="{{databaseId}}"
+          bindinput="onDbInput"
+          placeholder-class="placeholder"
+        />
+      </view>
+      <view class="field-hint">
+        <text>URL 格式：notion.so/用户名/xxxxxxxx...?v=...</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <button class="save-btn" bindtap="saveToken">
+    <image class="btn-icon" src="/images/icons/close.png" mode="aspectFit" wx:if="{{false}}" />
+    <text>保存设置</text>
+  </button>
+
+  <!-- 成功提示 -->
+  <view wx:if="{{saved}}" class="success-banner">
+    <text class="success-text">✓ 已绑定，可以开始剪藏了</text>
+  </view>
+</view>

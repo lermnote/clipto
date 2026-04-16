@@ -1,0 +1,163 @@
+/* pages/clip/clip.wxss */
+
+page {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.page {
+  padding: 40rpx 32rpx 120rpx;
+}
+
+/* ── section ── */
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.section-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  opacity: 0.55;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #555;
+}
+
+/* ── 卡片 ── */
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  /* 不用 overflow:hidden，避免微信小程序 input placeholder 被裁切 */
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+/* ── URL 输入区 ── */
+.url-card {
+  padding: 24rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.url-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  min-height: 56rpx;
+  line-height: 1.5;
+}
+
+.fetch-btn {
+  flex-shrink: 0;
+  height: 64rpx;
+  padding: 0 28rpx;
+  background: #2C56FF;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  border: none;
+  box-shadow: 0 4rpx 12rpx rgba(44, 86, 255, 0.35);
+}
+
+.fetch-btn::after {
+  border: none;
+}
+
+.fetch-btn.loading {
+  background: #99aadd;
+  box-shadow: none;
+}
+
+/* ── 普通输入 ── */
+.field-input {
+  /* 小程序 input 的 padding 和 line-height 组合不当会裁切文字上半部分
+     解决方案：去掉 input 的垂直 padding，改用父容器控制间距 */
+  padding: 0 28rpx;
+  font-size: 30rpx;
+  color: #1a1a1a;
+  width: 100%;
+  height: 88rpx;
+  /* line-height = height 实现垂直居中，避免文字被截 */
+  line-height: 88rpx;
+  box-sizing: border-box;
+}
+
+.placeholder {
+  color: #c0c0c0;
+  font-size: 28rpx;
+}
+
+/* ── 摘要 ── */
+.excerpt-card {
+  padding: 28rpx 32rpx;
+}
+
+.excerpt-text {
+  font-size: 27rpx;
+  color: #666;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* ── 抓取结果过渡 ── */
+.fetched-area {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 保存按钮 ── */
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #2C56FF 0%, #5B8CFF 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(44, 86, 255, 0.4);
+  border: none;
+  gap: 12rpx;
+}
+
+.save-btn::after {
+  border: none;
+}
+
+.save-btn text {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+.btn-icon {
+  width: 36rpx;
+  height: 36rpx;
+  filter: invert(1) brightness(2);
+}
+
+.save-btn.disabled {
+  background: #c8d0e0;
+  box-shadow: none;
+}

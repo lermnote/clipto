@@ -1,0 +1,38 @@
+<view class="page">
+
+  <!-- 加载中 -->
+  <view wx:if="{{loading}}" class="state-view">
+    <view class="loading-spin"></view>
+    <text class="state-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{list.length === 0}}" class="state-view">
+    <image class="empty-img" src="/images/icons/examples.png" mode="aspectFit" />
+    <text class="state-text">还没有剪藏记录</text>
+    <text class="state-sub">去剪藏一篇文章吧</text>
+  </view>
+
+  <!-- 列表 -->
+  <view wx:else class="list">
+    <view class="item" wx:for="{{list}}" wx:key="_id">
+      <image class="item-icon" src="/images/icons/examples.png" mode="aspectFit" />
+      <view class="item-main">
+        <text class="item-title" data-url="{{item.url}}" bindtap="openArticle">{{item.title}}</text>
+        <view class="item-meta">
+          <text class="item-tag" wx:if="{{item.tag}}"># {{item.tag}}</text>
+          <text class="item-date">{{item.createdAt}}</text>
+        </view>
+      </view>
+      <view class="item-actions">
+        <view class="action-btn" data-page-id="{{item.notionPageId}}" bindtap="openNotion">
+          <image class="action-icon" src="/images/icons/copy.png" mode="aspectFit" />
+        </view>
+        <view class="action-btn action-del" data-id="{{item._id}}" bindtap="deleteItem">
+          <image class="action-icon" src="/images/icons/close.png" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

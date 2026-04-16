@@ -1,0 +1,168 @@
+/* pages/index/index.wxss */
+
+page {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.page {
+  padding: 0 32rpx 120rpx;
+}
+
+/* ── 头部 ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0 60rpx;
+}
+
+.header-icon {
+  width: 120rpx;
+  height: 120rpx;
+  background: #2C56FF;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28rpx;
+  box-shadow: 0 8rpx 24rpx rgba(44, 86, 255, 0.35);
+}
+
+.logo {
+  width: 64rpx;
+  height: 64rpx;
+  filter: invert(1) brightness(2);
+}
+
+.header-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 2rpx;
+}
+
+.header-sub {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+/* ── section ── */
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.section-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  opacity: 0.6;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: 1rpx;
+}
+
+/* ── 卡片 ── */
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  /* 不用 overflow:hidden，避免微信小程序 input placeholder 被裁切 */
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 32rpx 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.field-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  opacity: 0.45;
+}
+
+.field-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1a1a1a;
+  /* line-height 设为 normal 或 1，避免文字被 padding/父容器裁切上半部分 */
+  line-height: 1;
+  /* 垂直居中 */
+  align-self: center;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.placeholder {
+  color: #c0c0c0;
+  font-size: 28rpx;
+}
+
+.field-hint {
+  padding: 18rpx 32rpx;
+  background: #fafafa;
+}
+
+.field-hint text {
+  font-size: 24rpx;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+/* ── 保存按钮 ── */
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48rpx;
+  height: 96rpx;
+  background: linear-gradient(135deg, #2C56FF 0%, #5B8CFF 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(44, 86, 255, 0.4);
+  border: none;
+}
+
+.save-btn::after {
+  border: none;
+}
+
+.save-btn text {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+/* ── 成功提示 ── */
+.success-banner {
+  margin-top: 32rpx;
+  background: #f0fff4;
+  border: 1rpx solid #b7eb8f;
+  border-radius: 16rpx;
+  padding: 24rpx 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-text {
+  font-size: 28rpx;
+  color: #52c41a;
+  font-weight: 500;
+}

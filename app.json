@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/clip/clip",
+    "pages/history/history",
+    "pages/index/index"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2C56FF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/clip/clip",
+        "text": "剪藏",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "images/icons/examples.png",
+        "selectedIconPath": "images/icons/examples-active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "设置",
+        "iconPath": "images/icons/usercenter.png",
+        "selectedIconPath": "images/icons/usercenter-active.png"
+      }
+    ]
+  },
+  "cloud": true,
+  "requiredPrivateInfos": [],
+  "permission": {},
+  "__usePrivacyCheck__": true,
+  "networkTimeout": {
+    "request": 30000
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "Clipto",
+    "navigationBarTextStyle": "black"
+  }
+}
