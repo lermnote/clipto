@@ -11,7 +11,7 @@
   <!-- 配置卡片 -->
   <view class="section">
     <view class="section-header">
-      <image class="section-icon" src="/images/icons/customer-service.svg" mode="aspectFit" />
+      <image class="section-icon" src="/images/icons/link.svg" mode="aspectFit" />
       <text class="section-title">Integration Token</text>
     </view>
     <view class="card">
@@ -34,7 +34,7 @@
 
   <view class="section">
     <view class="section-header">
-      <image class="section-icon" src="/images/icons/share.svg" mode="aspectFit" />
+      <image class="section-icon" src="/images/icons/link.svg" mode="aspectFit" />
       <text class="section-title">Database ID</text>
     </view>
     <view class="card">

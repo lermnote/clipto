@@ -33,7 +33,7 @@
     <!-- 标题 -->
     <view class="section">
       <view class="section-header">
-        <image class="section-icon" src="/images/icons/customer-service.svg" mode="aspectFit" />
+        <image class="section-icon" src="/images/icons/link.svg" mode="aspectFit" />
         <text class="section-title">标题</text>
       </view>
       <view class="card">
