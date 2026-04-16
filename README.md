@@ -22,15 +22,16 @@
 ## 项目结构
 
 ```
-miniprogram/
+clipto/
 ├── pages/
 │   ├── index/      # 首页（设置 Token 和 Database ID）
 │   ├── clip/       # 剪藏页（输入链接抓取文章）
 │   └── history/    # 历史记录
 ├── images/icons/   # 图标资源
-cloudfunctions/
-├── fetchArticle/  # 文章抓取云函数
-└── uploadImages/  # 图片转存云函数
+├── cloudfunctions/
+│   ├── fetchArticle/  # 文章抓取云函数
+│   └── uploadImages/  # 图片转存云函数
+└── app.js
 ```
 
 ## 配置说明
@@ -49,8 +50,8 @@ cloudfunctions/
 ### 2. 小程序配置
 
 在设置页填入：
-- **Notion Token**：`secret_xxx`
-- **Database ID**：Notion Database 页面的 URL 中的 32 位字符
+- **Notion Token**：以 `secret_`或者 `ntn_`开头的 Integration Token
+- **Database ID**：Notion Database URL 中的 32 位字符
 
 ### 3. 云开发配置
 
@@ -70,7 +71,7 @@ cloudfunctions/
 ### 云函数依赖
 
 ```bash
-cd cloudfunctions/fetchArticle
+cd clipto/cloudfunctions/fetchArticle
 npm install
 ```
 
@@ -79,7 +80,7 @@ npm install
 ### 本地开发
 
 1. 克隆项目
-2. 使用微信开发者工具导入项目
+2. 使用微信开发者工具导入 `clipto` 文件夹
 3. 开通云开发环境
 4. 部署云函数
-5. 修改 `project.config.json` 中的 appid
+5. 修改 `project.config.json` 中的 appid 为你的小程序 appid
