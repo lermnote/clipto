@@ -1,3 +1,7 @@
-<svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <path fill="currentColor" d="M811 610q-84 0-146 58L425 548q2-15 2-23t-2-23l240-120q62 58 146 58 88 0 151-63 62-62 62-151 0-88-62-151-63-62-151-62-89 0-151 62-63 63-63 151 0 8 2 23L359 369q-62-57-146-57-88 0-151 62Q0 436 0 525t62 151q63 62 151 62 84 0 146-57l240 120q-2 15-2 23 0 88 63 151 62 62 151 62 88 0 151-62 62-63 62-151 0-89-62-151-63-63-151-63z" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="18" cy="5" r="3"/>
+  <circle cx="6" cy="12" r="3"/>
+  <circle cx="18" cy="19" r="3"/>
+  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
 </svg>

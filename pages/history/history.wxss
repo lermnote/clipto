@@ -140,4 +140,5 @@ page {
 
 .action-del .action-icon {
   opacity: 0.4;
+  color: #ff4d4f;
 }

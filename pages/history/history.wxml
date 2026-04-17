@@ -26,10 +26,10 @@
       </view>
       <view class="item-actions">
         <view class="action-btn" data-page-id="{{item.notionPageId}}" bindtap="openNotion">
-          <image class="action-icon" src="/images/icons/copy.png" mode="aspectFit" />
+          <image class="action-icon" src="/images/icons/copy.svg" mode="aspectFit" />
         </view>
         <view class="action-btn action-del" data-id="{{item._id}}" bindtap="deleteItem">
-          <image class="action-icon" src="/images/icons/close.png" mode="aspectFit" />
+          <image class="action-icon" src="/images/icons/delete.svg" mode="aspectFit" />
         </view>
       </view>
     </view>
