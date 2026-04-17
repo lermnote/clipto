@@ -1,7 +1,7 @@
 // app.js
 App({
   globalData: {
-    env: 'YOUR_ENV_ID',  // 替换为你的云开发环境 ID
+    env: 'lerm-stn-5gnvxp7fecfa15ef',
     pendingUrl: null
   },
   onLaunch: function () {

@@ -45,7 +45,6 @@
           placeholder="从 Database URL 复制（32位）"
           value="{{databaseId}}"
           bindinput="onDbInput"
-          password="{{true}}"
           placeholder-class="placeholder"
         />
       </view>

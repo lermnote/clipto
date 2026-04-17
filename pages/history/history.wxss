@@ -73,6 +73,7 @@ page {
   margin-right: 20rpx;
   flex-shrink: 0;
   opacity: 0.45;
+  filter: brightness(0) saturate(100%);
 }
 
 /* 主体 */
@@ -139,6 +140,6 @@ page {
 }
 
 .action-del .action-icon {
-  opacity: 0.4;
-  color: #ff4d4f;
+  opacity: 0.5;
+  filter: invert(41%) sepia(94%) saturate(2471%) hue-rotate(316deg) brightness(100%);
 }
