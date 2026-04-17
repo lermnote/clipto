@@ -42,52 +42,29 @@ exports.main = async (event) => {
 
   // 3. 构建 originalSrc -> cloudUrl 的映射
   const srcToCloud = {}
-  imageBlocks.forEach((b, idx) => {
-    if (results[idx]) {
-      srcToCloud[b._originalSrc] = results[idx]
-    }
-  })
-
-  // 4. 获取页面已有 blocks，找到图片 block 的 ID
-  const getRes = await axios.get(
-    `https://api.notion.com/v1/blocks/${pageId}/children`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Notion-Version': '2022-06-28'
-      }
-    }
-  )
-
-  const existingBlocks = getRes.data.results || []
-  const imageBlockIds = existingBlocks
-    .filter(b => b.type === 'image')
-    .map(b => b.id)
-
-  // 5. 逐个更新图片 block（Notion API 不支持批量更新单个 block）
-  // 按位置对应：页面里第 N 张图片对应 imageBlocks 里第 N 张
-  let updated = 0
-  imageBlockIds.forEach((blockId, idx) => {
+  // 替换掉 forEach 那段
+  for (let idx = 0; idx < imageBlockIds.length; idx++) {
+    const blockId = imageBlockIds[idx]
     const src = imageBlocks[idx]?._originalSrc
-    if (!src || !srcToCloud[src]) return
+    if (!src || !srcToCloud[src]) continue
 
-    axios.patch(
-      `https://api.notion.com/v1/blocks/${blockId}`,
-      {
-        image: {
-          type: 'external',
-          external: { url: srcToCloud[src] }
+    try {
+      await axios.patch(
+        `https://api.notion.com/v1/blocks/${blockId}`,
+        { image: { type: 'external', external: { url: srcToCloud[src] } } },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Notion-Version': '2022-06-28',
+            'Content-Type': 'application/json'
+          }
         }
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Notion-Version': '2022-06-28',
-          'Content-Type': 'application/json'
-        }
-      }
-    ).then(() => updated++)
-  })
+      )
+      updated++
+    } catch (e) {
+      console.warn(`[uploadImages] block ${blockId} 更新失败`, e.message)
+    }
+  }
 
   return { success: true, updated, failed: imageBlockIds.length - updated }
 }

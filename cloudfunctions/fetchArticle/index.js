@@ -127,11 +127,31 @@ function domToBlocks(document) {
 }
 
 exports.main = async (event) => {
-  try {
-    const {
-      url
-    } = event
+  const { url } = event
 
+  // URL 白名单校验
+  let parsed
+  try {
+    parsed = new URL(url)
+  } catch {
+    return { error: true, type: 'invalid', message: '无效的 URL 格式' }
+  }
+
+  const ALLOWED_HOSTS = [
+    'mp.weixin.qq.com',
+    'weixin.qq.com',
+    // 后续可扩展：'zhuanlan.zhihu.com', 'sspai.com' 等
+  ]
+
+  if (parsed.protocol !== 'https:') {
+    return { error: true, type: 'invalid', message: '仅支持 HTTPS 链接' }
+  }
+
+  if (!ALLOWED_HOSTS.some(h => parsed.hostname === h || parsed.hostname.endsWith('.' + h))) {
+    return { error: true, type: 'invalid', message: '暂不支持该来源，目前仅支持微信公众号文章' }
+  }
+
+  try {
     const res = await axios.get(url, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15',
