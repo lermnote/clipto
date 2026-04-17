@@ -160,23 +160,24 @@ exports.main = async (event) => {
       timeout: 30000
     })
 
-    const dom = new JSDOM(res.data, {
-      url
-    })
+    // 只创建一次 DOM，并行处理
+    const dom = new JSDOM(res.data, { url })
+    const doc = dom.window.document
+    const docClone = doc.cloneNode(true)
 
-    // Readability 提取元信息
-    const reader = new Readability(dom.window.document.cloneNode(true))
-    const article = reader.parse()
+    // 并行：Readability + 封面图 + blocks
+    const [article, ogImage, blocks] = await Promise.all([
+      // Readability 提取标题、摘要
+      new Readability(docClone).parse(),
+      // 封面图（优先 og:image）
+      Promise.resolve(doc.querySelector('meta[property="og:image"]')?.content || null),
+      // blocks 提取（需清理底部元素）
+      (() => {
+        cleanWechatFooter(doc)
+        return domToBlocks(doc)
+      })()
+    ])
 
-    // 原始 DOM 转 blocks（保留图片原始 src）
-    const rawDom = new JSDOM(res.data, {
-      url
-    })
-    cleanWechatFooter(rawDom.window.document)
-    const blocks = domToBlocks(rawDom.window.document)
-
-    // 提取封面图：优先 og:image，其次 article.topImage
-    const ogImage = dom.window.document.querySelector('meta[property="og:image"]')?.content
     const coverImage = ogImage || article?.topImage?.src || null
 
     return {
