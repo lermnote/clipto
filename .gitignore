@@ -2,6 +2,9 @@
 project.config.json
 project.private.config.json
 
+# 本地配置（包含敏感信息）
+config/env.js
+
 # 编译产物
 *.wxss.js
 *.wxml.js
@@ -21,4 +24,4 @@ Thumbs.db
 
 # 云函数依赖（上传后安装）
 node_modules/
-app.js
+
