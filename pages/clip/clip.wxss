@@ -158,6 +158,6 @@ page {
 }
 
 .save-btn.disabled {
-  background: #c8d0e0;
+  background: #797979 !important;
   box-shadow: none;
 }

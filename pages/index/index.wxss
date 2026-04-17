@@ -156,7 +156,7 @@ page {
   justify-content: center;
   margin-top: 24rpx;
   height: 88rpx;
-  background: #f5f5f5;
+  background: #797979;
   border-radius: 20rpx;
   border: none;
 }
@@ -166,7 +166,7 @@ page {
 }
 
 .reset-btn text {
-  color: #999;
+  color: #fff;
   font-size: 28rpx;
 }
 
