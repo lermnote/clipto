@@ -21,3 +21,4 @@ Thumbs.db
 
 # 云函数依赖（上传后安装）
 node_modules/
+app.js
