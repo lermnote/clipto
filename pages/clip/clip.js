@@ -277,8 +277,9 @@ Page({
 
       const pageId = createRes.data.id
 
-      // 第二步：剩余 block 分批 append（逻辑不变）
+      // 第二步：剩余 block 分批 append
       const remaining = cleanBlocks.slice(50)
+      let patchFailed = false
       for (let i = 0; i < remaining.length; i += 50) {
         const batch = remaining.slice(i, i + 50)
         const patchRes = await wxRequest({
@@ -294,8 +295,13 @@ Page({
           }
         })
         if (patchRes.statusCode !== 200) {
+          patchFailed = true
           console.warn('追加 block 失败', patchRes.data)
         }
+      }
+      // 任一 batch 失败则中断，不写历史
+      if (patchFailed) {
+        throw new Error('部分 blocks 追加失败，文章未完整保存')
       }
 
       // 第三步：写历史（逻辑不变）
