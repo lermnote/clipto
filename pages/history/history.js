@@ -17,6 +17,11 @@ Page({
   },
 
   async onShow() {
+    // 有缓存则直接使用，避免每次切 tab 都全量拉取
+    if (this._cachedList) {
+      this.setData({ list: this._cachedList, loading: false })
+      return
+    }
     this.setData({ loading: true })
     try {
       const res = await db.collection('history')
@@ -27,6 +32,7 @@ Page({
         ...item,
         createdAt: formatDate(item.createdAt)
       }))
+      this._cachedList = list  // 缓存结果
       this.setData({ list, loading: false })
     } catch (e) {
       this.setData({ loading: false })
@@ -65,6 +71,7 @@ Page({
         if (!res.confirm) return
         try {
           await db.collection('history').doc(id).remove()
+          this._cachedList = null  // 删除后清缓存，下次 onShow 会重新拉取
           this.setData({
             list: this.data.list.filter(item => item._id !== id)
           })
