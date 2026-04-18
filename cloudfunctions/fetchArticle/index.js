@@ -232,23 +232,18 @@ function domToBlocks(document) {
 
     // ── 段落 ────────────────────────────────────────────
     if (tag === 'p') {
-      // 段落里如果有图片，先把图片提出来单独处理
-      const imgs = node.querySelectorAll('img')
-      if (imgs.length) {
-        for (const img of imgs) {
-          const src = extractImgSrc(img)
-          if (!src || src.startsWith('data:')) continue
-          blocks.push({
-            type: 'image',
-            image: { type: 'external', external: { url: src } },
-            _originalSrc: src
-          })
-        }
-        // 图片段落通常没有文字，但如果有就继续处理
-        const text = node.textContent.trim()
-        if (!text) return
+      // 先提取段落内的图片，单独生成 image block
+      // （img 在 parseInlineRichText 里会被跳过，不会重复出现在文字 block 里）
+      for (const img of node.querySelectorAll('img')) {
+        const src = extractImgSrc(img)
+        if (!src || src.startsWith('data:')) continue
+        blocks.push({
+          type: 'image',
+          image: { type: 'external', external: { url: src } },
+          _originalSrc: src
+        })
       }
-      // 纯空白段落跳过
+      // 空段落跳过
       if (!node.textContent.trim()) return
       const rt = parseInlineRichText(node)
       if (!rt.length) return
