@@ -14,7 +14,10 @@ async function uploadOne(src, index) {
         Referer: 'https://mp.weixin.qq.com'
       }
     })
-    const ext = src.includes('.png') ? 'png' : 'jpg'
+    const extMatch = src.match(/\.([^./?&#]+)(?:\?|#|$)/)
+    const rawExt = extMatch ? extMatch[1].toLowerCase() : ''
+    const validExts = ['png', 'jpg', 'jpeg', 'gif', 'webp']
+    const ext = validExts.includes(rawExt) ? rawExt : 'jpg'
     const upload = await cloud.uploadFile({
       cloudPath: `images/${Date.now()}_${index}.${ext}`,
       fileContent: Buffer.from(res.data)
