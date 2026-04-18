@@ -86,7 +86,7 @@ cd clipto/cloudfunctions/fetchArticle
 npm install
 ```
 
-依赖：`axios`、`@mozilla/readability`、`jsdom`
+依赖：`axios`、`jsdom`
 
 ### 本地开发
 
